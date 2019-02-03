@@ -1,7 +1,7 @@
 /**
- * Created by Redmal on 1/21/2019.
+ * Created by Redmal on 2/2/2019.
  * Goal is to retrieve the 5 most recent tweets
- * by President Donald Trump
+ * a person's Twitter account specified by the user.
  */
 
 import org.jsoup.Jsoup;
@@ -10,20 +10,25 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 
-public class DTtwitterScrape {
+public class TwitterScrape {
 
     public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
         int numOfTweet = 0;
 
-        String twitterUrl = "https://twitter.com/realDonaldTrump";
+        System.out.print("Enter a person to get their Twitter feed: ");
+        String userResponse = scanner.nextLine();
+
+        String twitterUrl = "http://www.google.com/search?hl=en&btnI=1&q=" + userResponse + " twitter";
 
         Document twitterDoc = Jsoup.connect(twitterUrl).get();
 
         Elements tweets = twitterDoc.getElementsByClass("TweetTextSize");
 
-        System.out.println("-----Most recent 5 tweets by President Trump-----\n");
+        System.out.println("-----Most recent 5 tweets by " + userResponse +"-----\n");
 
         //filter headers that contain getUserTopic
         numOfTweet = 0;
